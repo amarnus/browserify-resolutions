@@ -222,6 +222,9 @@ exports = module.exports =
             if (resolved) {
               _.each(deps[dupe], function(file, id) {
                 var resolvedDependency = deps[resolved][id];
+                if (resolvedDependency === file) {
+                    return;
+                }
                 // We might have already picked up this dependency as a dupe.
                 // Deduping to a dependency of the original could cause a circular reference.
                 // A resolved dependency is "false" if that module was externalized via browserify.external.
